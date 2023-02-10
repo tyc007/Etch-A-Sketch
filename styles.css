@@ -20,6 +20,10 @@ body {
     text-align: center;
   }
 
+.grid-item:hover {
+    background-color: lightgray;
+}
+
 #container {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
