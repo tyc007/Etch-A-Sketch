@@ -20,7 +20,7 @@ body {
     text-align: center;
   }
 
-.grid-item:hover {
+.grid-item:hover, .grid-item:focus {
     background-color: lightgray;
 }
 
@@ -35,3 +35,4 @@ body {
     padding: 20px;
     background-color: red;
 }
+
