@@ -1,17 +1,18 @@
-const GRIDHEIGHT = 16;
-const GRIDLENGTH = 16;
+const GRID_ROWS = 16;
+const GRID_COLS = 16;
+const container = document.getElementById('container');
 
-function createGrid(){
-    let container = document.createElement("div");
-    container.id = "container";
-    document.body.appendChild(container);
-    for (let i = 0; i < GRIDHEIGHT*GRIDLENGTH; i++){
-        let div = document.createElement("div");
-        div.id = i;
-        div.className = "grid";
-        container.appendChild(div);
-    }
-    
+
+function createGrid(rows,cols){
+    container.style.setProperty('--grid-rows', rows);
+    container.style.setProperty('--grid-cols', cols);
+    for (let i = 0; i < (rows * cols); i++) {
+        let cell = document.createElement("div");
+        cell.innerText = (i + 1);
+        container.appendChild(cell).className = "grid-item";
+    };
+
 }
 
-createGrid();
+
+createGrid(GRID_ROWS, GRID_COLS);

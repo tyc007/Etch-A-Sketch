@@ -1,3 +1,9 @@
+:root {
+    --grid-cols: 16;
+    --grid-rows: 16;
+  }
+  
+
 body {
     display: flex;
     align-items: center;
@@ -8,30 +14,20 @@ body {
     background-color: rgb(221, 255, 252);
 }
 
-.grid{
+.grid-item {
     background-color: whitesmoke;
     border: 1px solid black;
-}
+    text-align: center;
+  }
 
 #container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
     width: 80vw;
     height: 80vh;
     border-radius: 10px;
     box-shadow: 2px 2px 10px #333;
     padding: 20px;
     background-color: red;
-}
-
-#container>div {
-    border: 1px solid black;
-    height: 25px;
-    width: 25px;
-}
-
-#container>div:nth-child(16n + 1) {
-    width: 100%;
-    border: 0;
-    height: 0;
 }
