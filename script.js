@@ -15,13 +15,24 @@ function createGrid(rows,cols){
     };
 }
 
+function updateGrid(size){
+    deleteGrid();
+    createGrid(size,size);
+}
+
+function deleteGrid(){
+    while (container.firstChild) {
+        container.removeChild(container.lastChild);
+    }
+}
+
 function paint(e){
     e.target.style.backgroundColor = 'lightblue';
 }
 
 function createSizeSlider(){
-    let sliderValue = document.createElement("div");
-    sliderValue.textContent = gridRows;
+    let sliderDisplay = document.createElement("div");
+    sliderDisplay.textContent = gridRows;
 
     let slider = document.createElement("input");
     slider.id = "sizeSlider";
@@ -30,11 +41,16 @@ function createSizeSlider(){
     slider.max = "100";
     slider.value = gridRows;
 
-    slider.addEventListener("input", () => sliderValue.textContent = slider.value );
+    slider.addEventListener("input", function(){
+        sliderDisplay.textContent = slider.value; 
+        updateGrid(slider.value);
+    });
 
-    controls.appendChild(sliderValue);
+    controls.appendChild(sliderDisplay);
     controls.appendChild(slider);
 }
+
+
 
 createGrid(gridRows, gridCols);
 createSizeSlider();
