@@ -1,6 +1,7 @@
-const GRID_ROWS = 16;
-const GRID_COLS = 16;
+let gridRows = 16;
+let gridCols = 16;
 const container = document.getElementById('container');
+const controls = document.getElementById('controls');
 
 
 function createGrid(rows,cols){
@@ -18,5 +19,22 @@ function paint(e){
     e.target.style.backgroundColor = 'lightblue';
 }
 
-createGrid(GRID_ROWS, GRID_COLS);
-//createHoverEffect();
+function createSizeSlider(){
+    let sliderValue = document.createElement("div");
+    sliderValue.textContent = gridRows;
+
+    let slider = document.createElement("input");
+    slider.id = "sizeSlider";
+    slider.type = "range";
+    slider.min = "1";
+    slider.max = "100";
+    slider.value = gridRows;
+
+    slider.addEventListener("input", () => sliderValue.textContent = slider.value );
+
+    controls.appendChild(sliderValue);
+    controls.appendChild(slider);
+}
+
+createGrid(gridRows, gridCols);
+createSizeSlider();
