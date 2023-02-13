@@ -3,6 +3,7 @@ const DEFAULT_COLOR = '#696969';
 
 let gridSize = DEFAULT_SIZE;
 let color = DEFAULT_COLOR;
+let paintMode = 'color';
 const container = document.getElementById('container');
 const settings = document.getElementById('settings');
 
@@ -14,7 +15,6 @@ function createGrid(rows,cols){
     for (let i = 0; i < (rows * cols); i++) {
         let gridItem = document.createElement("div");
         gridItem.addEventListener('mouseover', paint);
-        gridItem.addEventListener('mousedown', paint);
         container.appendChild(gridItem).className = "grid-item";
     };
 }
@@ -31,7 +31,29 @@ function deleteGrid(){
 }
 
 function paint(e){
+    if (paintMode == 'color') {
+        paintColor(e);
+    }
+    if (paintMode == 'rainbow') {
+        paintRainbow(e);
+    }
+    
+}
+
+function paintColor(e){
     e.target.style.backgroundColor = color;
+}
+
+function paintRainbow(e){
+    e.target.style.backgroundColor = rgb(randomRGBInt(),randomRGBInt(),randomRGBInt());
+}
+
+function randomRGBInt(){
+    return Math.floor(Math.random() * 256);
+}
+
+function rgb(r,g,b){
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function createSizeSlider(){
@@ -62,6 +84,10 @@ function createRainbowOption(){
     rainbowButton.id = "rainbow";
     rainbowButton.textContent = "Rainbow";
 
+    rainbowButton.addEventListener("click", function(){
+        paintMode = 'rainbow';
+    });
+
     settings.appendChild(rainbowButton);
 }
 
@@ -69,6 +95,10 @@ function createColorOption(){
     const colorButton = document.createElement("button");
     colorButton.id = "color";
     colorButton.textContent = "Color";
+
+    colorButton.addEventListener("click", function(){
+        colorButton = 'color';
+    });
 
     settings.appendChild(colorButton);
 }
