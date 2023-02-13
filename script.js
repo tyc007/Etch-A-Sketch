@@ -1,6 +1,8 @@
-let gridRows = 16;
-let gridCols = 16;
-let color = '#080808';
+const DEFAULT_SIZE = 16;
+const DEFAULT_COLOR = '#696969';
+
+let gridSize = DEFAULT_SIZE;
+let color = DEFAULT_COLOR;
 const container = document.getElementById('container');
 const settings = document.getElementById('settings');
 
@@ -36,14 +38,14 @@ function createSizeSlider(){
     let sliderContainer = document.createElement("div");
 
     let sliderDisplay = document.createElement("div");
-    sliderDisplay.textContent = gridRows;
+    sliderDisplay.textContent = gridSize;
 
     let slider = document.createElement("input");
     slider.id = "sizeSlider";
     slider.type = "range";
     slider.min = "1";
     slider.max = "100";
-    slider.value = gridRows;
+    slider.value = gridSize;
 
     slider.addEventListener("input", function(){
         sliderDisplay.textContent = slider.value; 
@@ -73,7 +75,7 @@ function createColorOption(){
 
 
 
-createGrid(gridRows, gridCols);
+createGrid(gridSize, gridSize);
 createSizeSlider();
 createRainbowOption();
 createColorOption();
