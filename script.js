@@ -7,20 +7,16 @@ function createGrid(rows,cols){
     container.style.setProperty('--grid-rows', rows);
     container.style.setProperty('--grid-cols', cols);
     for (let i = 0; i < (rows * cols); i++) {
-        let cell = document.createElement("div");
-        container.appendChild(cell).className = "grid-item";
+        let gridItem = document.createElement("div");
+        gridItem.addEventListener('mouseover', paint);
+        gridItem.addEventListener('mousedown', paint);
+        container.appendChild(gridItem).className = "grid-item";
     };
 }
 
-function createHoverEffect(){
-    const gridItems = document.querySelectorAll('.grid-item');
-
-    gridItems.forEach(gridItem => {
-        gridItem.addEventListener('mouseover', function() {
-            this.style.backgroundColor = 'lightblue';
-        });
-    });
+function paint(e){
+    e.target.style.backgroundColor = 'lightblue';
 }
 
 createGrid(GRID_ROWS, GRID_COLS);
-createHoverEffect();
+//createHoverEffect();
