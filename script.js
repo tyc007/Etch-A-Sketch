@@ -1,7 +1,9 @@
 let gridRows = 16;
 let gridCols = 16;
+let color = '#080808';
 const container = document.getElementById('container');
-const controls = document.getElementById('controls');
+const settings = document.getElementById('settings');
+
 
 
 function createGrid(rows,cols){
@@ -27,10 +29,12 @@ function deleteGrid(){
 }
 
 function paint(e){
-    e.target.style.backgroundColor = 'lightblue';
+    e.target.style.backgroundColor = color;
 }
 
 function createSizeSlider(){
+    let sliderContainer = document.createElement("div");
+
     let sliderDisplay = document.createElement("div");
     sliderDisplay.textContent = gridRows;
 
@@ -46,11 +50,30 @@ function createSizeSlider(){
         updateGrid(slider.value);
     });
 
-    controls.appendChild(sliderDisplay);
-    controls.appendChild(slider);
+    sliderContainer.appendChild(sliderDisplay);
+    sliderContainer.appendChild(slider);
+    settings.appendChild(sliderContainer);
+}
+
+function createRainbowOption(){
+    const rainbowButton = document.createElement("button");
+    rainbowButton.id = "rainbow";
+    rainbowButton.textContent = "Rainbow";
+
+    settings.appendChild(rainbowButton);
+}
+
+function createColorOption(){
+    const colorButton = document.createElement("button");
+    colorButton.id = "color";
+    colorButton.textContent = "Color";
+
+    settings.appendChild(colorButton);
 }
 
 
 
 createGrid(gridRows, gridCols);
 createSizeSlider();
+createRainbowOption();
+createColorOption();

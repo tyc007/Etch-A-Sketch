@@ -25,8 +25,8 @@ body {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    width: 80vw;
-    height: 80vh;
+    width: 75vw;
+    height: 75vh;
     border-radius: 10px;
     box-shadow: 2px 2px 10px #333;
     padding: 20px;
@@ -34,3 +34,10 @@ body {
     margin: 10px;
 }
 
+.settings {
+  display: flex;
+}
+
+button {
+  margin: 2.5px;
+}
