@@ -71,6 +71,7 @@ function createSizeSlider(){
 
     slider.addEventListener("input", function(){
         sliderDisplay.textContent = slider.value; 
+        gridSize = slider.value;
         updateGrid(slider.value);
     });
 
@@ -109,7 +110,19 @@ function createOptions(){
     settings.appendChild(rainbowButton);
 }
 
+function createErase(){
+    const eraseButton = document.createElement("button");
+    eraseButton.id = "erase";
+    eraseButton.textContent = "Erase";
+
+    eraseButton.addEventListener("click", function(){
+        updateGrid(gridSize);
+    });
+
+    settings.appendChild(eraseButton);
+}
 
 createGrid(gridSize, gridSize);
 createSizeSlider();
 createOptions();
+createErase();
