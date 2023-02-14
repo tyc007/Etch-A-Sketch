@@ -79,33 +79,37 @@ function createSizeSlider(){
     settings.appendChild(sliderContainer);
 }
 
-function createRainbowOption(){
+function createOptions(){
     const rainbowButton = document.createElement("button");
     rainbowButton.id = "rainbow";
     rainbowButton.textContent = "Rainbow";
 
-    rainbowButton.addEventListener("click", function(){
-        paintMode = 'rainbow';
-    });
-
-    settings.appendChild(rainbowButton);
-}
-
-function createColorOption(){
     const colorButton = document.createElement("button");
     colorButton.id = "color";
     colorButton.textContent = "Color";
+    colorButton.classList.toggle("active");
+
+    rainbowButton.addEventListener("click", function(){
+        paintMode = 'rainbow';
+        rainbowButton.classList.toggle("active");
+        if (colorButton.classList.contains("active")){
+            colorButton.classList.toggle("active");
+        }
+    });
 
     colorButton.addEventListener("click", function(){
-        colorButton = 'color';
+        paintMode = 'color';
+        colorButton.classList.toggle("active");
+        if (rainbowButton.classList.contains("active")){
+            rainbowButton.classList.toggle("active");
+        }
     });
 
     settings.appendChild(colorButton);
+    settings.appendChild(rainbowButton);
 }
-
 
 
 createGrid(gridSize, gridSize);
 createSizeSlider();
-createRainbowOption();
-createColorOption();
+createOptions();
